@@ -1,0 +1,12 @@
+/* Asteroid Styles */
+#asteroid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#asteroid img {
+    position: fixed;
+    top: 15%;
+}
