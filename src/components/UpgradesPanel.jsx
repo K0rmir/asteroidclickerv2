@@ -1,6 +1,7 @@
 import "../css/UpgradesPanel.css";
 import UpgradeOne from "./UpgradeOne";
 import UpgradeTwo from "./UpgradeTwo";
+import UpgradeThree from "./UpgradeThree";
 
 export default function UpgradesPanel({
   upgradeOneCost,
@@ -15,6 +16,10 @@ export default function UpgradesPanel({
   upgradeTwoQuantity,
   handleUpgradeTwoQuantity,
   handleUpgradeTwoClick,
+  upgradeThreeCost,
+  handleUpgradeThreeCost,
+  upgradeThreeQuantity,
+  handleUpgradeThreeQuantity,
 }) {
   return (
     <div className="upgradesPanel">
@@ -35,12 +40,18 @@ export default function UpgradesPanel({
         handleUpgradeTwoCost={handleUpgradeTwoCost}
         upgradeTwoQuantity={upgradeTwoQuantity}
         handleUpgradeTwoQuantity={handleUpgradeTwoQuantity}
-        handleUpgradeTwoClick={handleUpgradeTwoClick}
-        
-      
-      
-      
-      
+        handleUpgradeTwoClick={handleUpgradeTwoClick}      
+      />
+      <UpgradeThree
+        metalCounter={metalCounter}
+        metalsPerSecond={metalsPerSecond}
+        handleMetalsPerSecond={handleMetalsPerSecond}
+        upgradeThreeCost={upgradeThreeCost}
+        handleUpgradeThreeCost={handleUpgradeThreeCost}
+        upgradeThreeQuantity={upgradeThreeQuantity}
+        handleUpgradeThreeQuantity={handleUpgradeThreeQuantity}
+
+
       />
       
     </div>

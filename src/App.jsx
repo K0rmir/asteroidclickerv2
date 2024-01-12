@@ -10,9 +10,12 @@ export default function App() {
   const [upgradeOneCost, setUpgradeOneCost] = useState(10);
   const [upgradeOneQuantity, setUpgradeOneQuantity] = useState(0);
   const [metalsPerSecond, setMetalsPerSecond] = useState(0);
-  const [upgradeTwoCost, setUpgradeTwoCost] = useState(20);
+  const [upgradeTwoCost, setUpgradeTwoCost] = useState(100);
   const [upgradeTwoQuantity, setUpgradeTwoQuantity] = useState(0);
   const [upgradeTwoStep, setUpgradeTwoStep] = useState(10);
+  const [upgradeThreeCost, setUpgradeThreeCost] = useState(20);
+  const [upgradeThreeQuantity, setUpgradeThreeQuantity] = useState(0);
+  const [upgradeThreeStep, setUpgradeThreeStep] = useState(5);
 
 
   // Functions for overall, global Metal Count & Metals Per Second (MPS) //
@@ -57,13 +60,38 @@ export default function App() {
   function handleUpgradeTwoQuantity() {
     setUpgradeTwoQuantity(upgradeTwoQuantity + 1);
   }
-
 // Upgrade Two functionality to increase asteroid click by 10 //
-
   function handleUpgradeTwoClick() {
     setUpgradeTwoStep(upgradeTwoStep +10);
     setAsteroidClick(upgradeTwoStep);
   }
+// ------------------------------------------------------------- //
+// Functions for handling Upgrade Three Cost, Quantity & MPS //
+// Upgrade Three Cost // 
+  function handleUpgradeThreeCost() {
+    setUpgradeThreeCost(Math.floor(upgradeThreeCost * 1.4));
+    setMetalCounter(metalCounter - upgradeThreeCost);
+  }
+// Upgrade Three Quantity //
+  function handleUpgradeThreeQuantity() {
+    setUpgradeThreeStep(upgradeThreeStep + 5);
+    setUpgradeThreeQuantity(upgradeThreeQuantity + 1);
+    console.log(upgradeThreeStep);
+  }
+// Upgrade Three interval to increase MPS by 5 //
+useEffect(() => {
+  const increaseMetalsPerSecond = setInterval(() => {
+    setMetalCounter(
+      (currentMetalCounter) => currentMetalCounter + upgradeThreeStep
+    );
+    console.log(upgradeThreeStep);
+  }, 1000);
+
+  return () => {
+    clearInterval(increaseMetalsPerSecond);
+  };
+}, [metalsPerSecond]); 
+
 
   return (
     <>
@@ -84,6 +112,12 @@ export default function App() {
         upgradeTwoQuantity={upgradeTwoQuantity}
         handleUpgradeTwoQuantity={handleUpgradeTwoQuantity}
         handleUpgradeTwoClick={handleUpgradeTwoClick}
+        upgradeThreeCost={upgradeThreeCost}
+        handleUpgradeThreeCost={handleUpgradeThreeCost}
+        upgradeThreeQuantity={upgradeThreeQuantity}
+        handleUpgradeThreeQuantity={handleUpgradeThreeQuantity}
+
+
       />
     </>
   );
