@@ -42,20 +42,16 @@ export default function App() {
       clearInterval(increaseMetalsPerSecond);
     };
   }, [metalsPerSecond]);
+  
   // Interval to check availability of upgrades //
-  useEffect(() => {
-    const checkAvailability = setInterval(() => {
-      if (metalCounter >= upgradeOneCost) {
-        setShowAvailability(true);
+  useEffect(() => { 
+    if (metalCounter >= upgradeOneCost) {
+      setShowAvailability(true);
       } else {
         setShowAvailability(false);
-      }
-    }, 100);
-
-    return () => {
-      clearInterval(checkAvailability);
-    };
+    } 
   }, [metalCounter]);
+
 
   // ------------------------------------------------------------ //
 
@@ -76,4 +72,4 @@ export default function App() {
       />
     </>
   );
-}
+};
