@@ -4,12 +4,12 @@ export default function UpgradeOne({
   upgradeOneQuantity,
   handleUpgradeOneQuantity,
   handleMetalsPerSecond,
-  showAvailability,
+  metalCounter,
 }) {
   return (
     <div
       id="upgradeSection"
-      className={showAvailability ? "" : "notAvailable"}
+      className={metalCounter >= upgradeOneCost ? "" : "notAvailable"}
       onClick={() => {
         handleUpgradeOneCost();
         handleUpgradeOneQuantity();

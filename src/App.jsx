@@ -6,14 +6,18 @@ import UpgradesPanel from "./components/UpgradesPanel";
 
 export default function App() {
   const [metalCounter, setMetalCounter] = useState(0);
+  const [asteroidClick, setAsteroidClick] = useState(1);
   const [upgradeOneCost, setUpgradeOneCost] = useState(10);
   const [upgradeOneQuantity, setUpgradeOneQuantity] = useState(0);
   const [metalsPerSecond, setMetalsPerSecond] = useState(0);
-  const [showAvailability, setShowAvailability] = useState(false);
+  const [upgradeTwoCost, setUpgradeTwoCost] = useState(20);
+  const [upgradeTwoQuantity, setUpgradeTwoQuantity] = useState(0);
+  const [upgradeTwoStep, setUpgradeTwoStep] = useState(10);
+
 
   // Functions for overall, global Metal Count & Metals Per Second (MPS) //
   function handleAsteroidClick() {
-    setMetalCounter(metalCounter + 1);
+    setMetalCounter(metalCounter + asteroidClick);
   }
 
   function handleMetalsPerSecond() {
@@ -23,8 +27,8 @@ export default function App() {
   // Functions for handling Upgrade One Cost, Quantity & MPS //
   // Upgrade One Cost //
   function handleUpgradeOneCost() {
-    setMetalCounter(metalCounter - upgradeOneCost);
     setUpgradeOneCost(Math.floor(upgradeOneCost * 1.2));
+    setMetalCounter(metalCounter - upgradeOneCost);
   }
   // Upgrade One Quantity //
   function handleUpgradeOneQuantity() {
@@ -41,23 +45,29 @@ export default function App() {
     return () => {
       clearInterval(increaseMetalsPerSecond);
     };
-  }, [metalsPerSecond]);
-  
-  // Interval to check availability of upgrades //
-  useEffect(() => { 
-    if (metalCounter >= upgradeOneCost) {
-      setShowAvailability(true);
-      } else {
-        setShowAvailability(false);
-    } 
-  }, [metalCounter]);
-
-
+  }, [metalsPerSecond]); 
   // ------------------------------------------------------------ //
+  // Functions for handling Upgrade Two Cost, Quantity & Click Increase //
+  // Upgrade Two Cost //
+  function handleUpgradeTwoCost() {
+    setUpgradeTwoCost(Math.floor(upgradeTwoCost * 1.3));
+    setMetalCounter(metalCounter - upgradeTwoCost);
+  }
+// Upgrade Two Quantity //
+  function handleUpgradeTwoQuantity() {
+    setUpgradeTwoQuantity(upgradeTwoQuantity + 1);
+  }
+
+// Upgrade Two functionality to increase asteroid click by 10 //
+
+  function handleUpgradeTwoClick() {
+    setUpgradeTwoStep(upgradeTwoStep +10);
+    setAsteroidClick(upgradeTwoStep);
+  }
 
   return (
     <>
-      <Asteroid handleAsteroidClick={handleAsteroidClick} />
+      <Asteroid asteroidClick={asteroidClick} handleAsteroidClick={handleAsteroidClick}  />
       <RareMetalCounter
         metalCounter={metalCounter}
         metalsPerSecond={metalsPerSecond}
@@ -68,7 +78,12 @@ export default function App() {
         upgradeOneQuantity={upgradeOneQuantity}
         handleUpgradeOneQuantity={handleUpgradeOneQuantity}
         handleMetalsPerSecond={handleMetalsPerSecond}
-        showAvailability={showAvailability}
+        metalCounter={metalCounter}
+        upgradeTwoCost={upgradeTwoCost}
+        handleUpgradeTwoCost={handleUpgradeTwoCost}
+        upgradeTwoQuantity={upgradeTwoQuantity}
+        handleUpgradeTwoQuantity={handleUpgradeTwoQuantity}
+        handleUpgradeTwoClick={handleUpgradeTwoClick}
       />
     </>
   );

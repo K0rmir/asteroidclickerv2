@@ -2,7 +2,7 @@ import "../css/Asteroid.css"
 
 
 
-export default function Asteroid({handleAsteroidClick}) {
+export default function Asteroid({asteroidClick, handleAsteroidClick}) {
     return (
         <div id="asteroid">
             <img onClick={() => {
