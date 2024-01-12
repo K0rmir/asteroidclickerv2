@@ -8,6 +8,7 @@ export default function UpgradesPanel({
   handleUpgradeOneQuantity,
   metalsPerSecond,
   handleMetalsPerSecond,
+  showAvailability,
 }) {
   return (
     <div className="upgradesPanel">
@@ -19,6 +20,7 @@ export default function UpgradesPanel({
         handleUpgradeOneQuantity={handleUpgradeOneQuantity}
         metalsPerSecond={metalsPerSecond}
         handleMetalsPerSecond={handleMetalsPerSecond}
+        showAvailability={showAvailability}
       />
     </div>
   );
