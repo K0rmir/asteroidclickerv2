@@ -10,17 +10,21 @@ export default function App() {
   const [upgradeOneCost, setUpgradeOneCost] = useState(10);
   const [upgradeOneQuantity, setUpgradeOneQuantity] = useState(0);
   const [metalsPerSecond, setMetalsPerSecond] = useState(0);
-  const [upgradeTwoCost, setUpgradeTwoCost] = useState(100);
+  const [upgradeTwoCost, setUpgradeTwoCost] = useState(15);
   const [upgradeTwoQuantity, setUpgradeTwoQuantity] = useState(0);
   const [upgradeTwoStep, setUpgradeTwoStep] = useState(10);
   const [upgradeThreeCost, setUpgradeThreeCost] = useState(20);
   const [upgradeThreeQuantity, setUpgradeThreeQuantity] = useState(0);
-  const [upgradeThreeStep, setUpgradeThreeStep] = useState(5);
-
+  const [isMultiplierActive, setIsMultiplierActive] = useState(false);
+  const [preMultiplierValue, setPreMultiplierValue] = useState(asteroidClick);
 
   // Functions for overall, global Metal Count & Metals Per Second (MPS) //
   function handleAsteroidClick() {
+    setPreMultiplierValue(asteroidClick);
     setMetalCounter(metalCounter + asteroidClick);
+    if (isMultiplierActive) {
+      handleTempMultiplier();
+    }
   }
 
   function handleMetalsPerSecond() {
@@ -48,7 +52,7 @@ export default function App() {
     return () => {
       clearInterval(increaseMetalsPerSecond);
     };
-  }, [metalsPerSecond]); 
+  }, [metalsPerSecond]);
   // ------------------------------------------------------------ //
   // Functions for handling Upgrade Two Cost, Quantity & Click Increase //
   // Upgrade Two Cost //
@@ -56,46 +60,62 @@ export default function App() {
     setUpgradeTwoCost(Math.floor(upgradeTwoCost * 1.3));
     setMetalCounter(metalCounter - upgradeTwoCost);
   }
-// Upgrade Two Quantity //
+  // Upgrade Two Quantity //
   function handleUpgradeTwoQuantity() {
     setUpgradeTwoQuantity(upgradeTwoQuantity + 1);
   }
-// Upgrade Two functionality to increase asteroid click by 10 //
+  // Upgrade Two functionality to increase asteroid click by 10 //
   function handleUpgradeTwoClick() {
-    setUpgradeTwoStep(upgradeTwoStep +10);
+    setUpgradeTwoStep(upgradeTwoStep + 10);
     setAsteroidClick(upgradeTwoStep);
   }
-// ------------------------------------------------------------- //
-// Functions for handling Upgrade Three Cost, Quantity & MPS //
-// Upgrade Three Cost // 
+  // ------------------------------------------------------------- //
+  // Functions for handling Upgrade Three Cost, Quantity & MPS //
+  // Upgrade Three Cost //
   function handleUpgradeThreeCost() {
     setUpgradeThreeCost(Math.floor(upgradeThreeCost * 1.4));
     setMetalCounter(metalCounter - upgradeThreeCost);
   }
-// Upgrade Three Quantity //
+  // Upgrade Three Quantity //
   function handleUpgradeThreeQuantity() {
-    setUpgradeThreeStep(upgradeThreeStep + 5);
     setUpgradeThreeQuantity(upgradeThreeQuantity + 1);
-    console.log(upgradeThreeStep);
   }
-// Upgrade Three interval to increase MPS by 5 //
-useEffect(() => {
-  const increaseMetalsPerSecond = setInterval(() => {
-    setMetalCounter(
-      (currentMetalCounter) => currentMetalCounter + upgradeThreeStep
-    );
-    console.log(upgradeThreeStep);
-  }, 1000);
+  // Upgrade Three functionality to apply temporary click modifier  //
 
-  return () => {
-    clearInterval(increaseMetalsPerSecond);
+  let timeoutId;
+  console.log(isMultiplierActive);
+  const handleUpgradeThreeMultiplier = () => {
+    console.log("5 Seconds Start");
+    console.log(isMultiplierActive);
+    // setPreMultiplierValue(asteroidClick);
+    setIsMultiplierActive(true);
+    handleTempMultiplier();
+
+    clearTimeout(timeoutId);
+
+    timeoutId = setTimeout(() => {
+      setIsMultiplierActive(false);
+      console.log("5 Seconds End");
+      setAsteroidClick(preMultiplierValue);
+    }, 5000);
   };
-}, [metalsPerSecond]); 
 
+  const handleTempMultiplier = () => {
+    const newValue = isMultiplierActive
+      ? preMultiplierValue * 2
+      : asteroidClick;
+    setAsteroidClick(newValue);
+    console.log(newValue);
+  };
+
+  console.log(asteroidClick);
 
   return (
     <>
-      <Asteroid asteroidClick={asteroidClick} handleAsteroidClick={handleAsteroidClick}  />
+      <Asteroid
+        asteroidClick={asteroidClick}
+        handleAsteroidClick={handleAsteroidClick}
+      />
       <RareMetalCounter
         metalCounter={metalCounter}
         metalsPerSecond={metalsPerSecond}
@@ -116,9 +136,10 @@ useEffect(() => {
         handleUpgradeThreeCost={handleUpgradeThreeCost}
         upgradeThreeQuantity={upgradeThreeQuantity}
         handleUpgradeThreeQuantity={handleUpgradeThreeQuantity}
-
-
+        handleUpgradeThreeMultiplier={handleUpgradeThreeMultiplier}
+        // handleTempMultiplier={handleTempMultiplier}
+        // handleAsteroidClick={handleAsteroidClick}
       />
     </>
   );
-};
+}

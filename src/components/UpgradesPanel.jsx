@@ -20,6 +20,9 @@ export default function UpgradesPanel({
   handleUpgradeThreeCost,
   upgradeThreeQuantity,
   handleUpgradeThreeQuantity,
+  handleUpgradeThreeMultiplier,
+  handleTempMultiplier,
+  handleAsteroidClick,
 }) {
   return (
     <div className="upgradesPanel">
@@ -32,7 +35,6 @@ export default function UpgradesPanel({
         handleUpgradeOneQuantity={handleUpgradeOneQuantity}
         metalsPerSecond={metalsPerSecond}
         handleMetalsPerSecond={handleMetalsPerSecond}
-        
       />
       <UpgradeTwo
         metalCounter={metalCounter}
@@ -40,20 +42,17 @@ export default function UpgradesPanel({
         handleUpgradeTwoCost={handleUpgradeTwoCost}
         upgradeTwoQuantity={upgradeTwoQuantity}
         handleUpgradeTwoQuantity={handleUpgradeTwoQuantity}
-        handleUpgradeTwoClick={handleUpgradeTwoClick}      
+        handleUpgradeTwoClick={handleUpgradeTwoClick}
       />
       <UpgradeThree
         metalCounter={metalCounter}
-        metalsPerSecond={metalsPerSecond}
-        handleMetalsPerSecond={handleMetalsPerSecond}
         upgradeThreeCost={upgradeThreeCost}
         handleUpgradeThreeCost={handleUpgradeThreeCost}
         upgradeThreeQuantity={upgradeThreeQuantity}
         handleUpgradeThreeQuantity={handleUpgradeThreeQuantity}
-
-
+        handleUpgradeThreeMultiplier={handleUpgradeThreeMultiplier}
+        handleAsteroidClick={handleAsteroidClick}
       />
-      
     </div>
   );
 }
