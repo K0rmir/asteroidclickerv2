@@ -5,15 +5,15 @@ import RareMetalCounter from "./components/RareMetalCounter";
 import UpgradesPanel from "./components/UpgradesPanel";
 
 export default function App() {
-  const [metalCounter, setMetalCounter] = useState(0);
   const [asteroidClick, setAsteroidClick] = useState(1);
+  const [metalCounter, setMetalCounter] = useState(0);
+  const [metalsPerSecond, setMetalsPerSecond] = useState(0);
   const [upgradeOneCost, setUpgradeOneCost] = useState(25);
   const [upgradeOneQuantity, setUpgradeOneQuantity] = useState(0);
-  const [metalsPerSecond, setMetalsPerSecond] = useState(0);
-  const [upgradeTwoCost, setUpgradeTwoCost] = useState(100);
+  const [upgradeTwoCost, setUpgradeTwoCost] = useState(10);
   const [upgradeTwoQuantity, setUpgradeTwoQuantity] = useState(0);
   const [upgradeTwoStep, setUpgradeTwoStep] = useState(5);
-  const [upgradeThreeCost, setUpgradeThreeCost] = useState(1000);
+  const [upgradeThreeCost, setUpgradeThreeCost] = useState(10);
   const [upgradeThreeQuantity, setUpgradeThreeQuantity] = useState(0);
   const [isMultiplierActive, setIsMultiplierActive] = useState(false);
   const [preMultiplierValue, setPreMultiplierValue] = useState(asteroidClick);
@@ -67,6 +67,7 @@ export default function App() {
   function handleUpgradeTwoClick() {
     setUpgradeTwoStep(upgradeTwoStep + 5);
     setAsteroidClick(upgradeTwoStep);
+    // setMetalsPerClick(asteroidClick);
   }
   // ------------------------------------------------------------- //
   // Functions for handling Upgrade Three Cost, Quantity & MPS //
@@ -81,6 +82,7 @@ export default function App() {
   }
   // Upgrade Three functionality to apply temporary click multiplier  //
   let timeoutId;
+  let newValue;
   console.log(isMultiplierActive);
   const handleUpgradeThreeMultiplier = () => {
     console.log("3 Seconds Start");
@@ -99,24 +101,49 @@ export default function App() {
   };
 
   const handleTempMultiplier = () => {
-    const newValue = isMultiplierActive
-      ? preMultiplierValue * 2
-      : asteroidClick;
+    newValue = isMultiplierActive ? preMultiplierValue * 2 : asteroidClick;
     setAsteroidClick(newValue);
     console.log(newValue);
   };
 
   console.log(asteroidClick);
+  // -------------------------------------------------------------------- //
+  // Local Storage //
+
+  useEffect(() => {
+    localStorage.setItem("asteroidClick", asteroidClick);
+    localStorage.setItem("metalsPerSecond", metalsPerSecond);
+    localStorage.setItem("metalCounter", metalCounter);
+    localStorage.setItem("upgradeOneCost", upgradeOneCost);
+    localStorage.setItem("upgradeOneQuantity", upgradeOneQuantity);
+    localStorage.setItem("upgradeTwoCost", upgradeTwoCost);
+    localStorage.setItem("upgradeTwoQuantity", upgradeTwoQuantity);
+    localStorage.setItem("upgradeThreeCost", upgradeThreeCost);
+    localStorage.setItem("upgradeThreeQuantity", upgradeThreeQuantity);
+  }, [
+    asteroidClick,
+    metalsPerSecond,
+    metalCounter,
+    upgradeOneCost,
+    upgradeOneQuantity,
+    upgradeTwoCost,
+    upgradeTwoQuantity,
+    upgradeThreeCost,
+    upgradeThreeQuantity,
+  ]);
 
   return (
     <>
       <Asteroid
         asteroidClick={asteroidClick}
         handleAsteroidClick={handleAsteroidClick}
+        isMultiplierActive={isMultiplierActive}
       />
       <RareMetalCounter
         metalCounter={metalCounter}
         metalsPerSecond={metalsPerSecond}
+        asteroidClick={asteroidClick}
+        isMultiplierActive={isMultiplierActive}
       />
       <UpgradesPanel
         upgradeOneCost={upgradeOneCost}
@@ -135,8 +162,6 @@ export default function App() {
         upgradeThreeQuantity={upgradeThreeQuantity}
         handleUpgradeThreeQuantity={handleUpgradeThreeQuantity}
         handleUpgradeThreeMultiplier={handleUpgradeThreeMultiplier}
-        // handleTempMultiplier={handleTempMultiplier}
-        // handleAsteroidClick={handleAsteroidClick}
       />
     </>
   );
