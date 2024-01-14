@@ -6,7 +6,7 @@ import UpgradesPanel from "./components/UpgradesPanel";
 import Astronaut from "./components/Astronaut";
 
 export default function App() {
-  // localStorage.clear();
+  localStorage.clear();
   let savedValues = JSON.parse(localStorage.getItem("storageObj"));
   if (savedValues === null) {
     savedValues = {
@@ -15,7 +15,7 @@ export default function App() {
       metalsPerSecond: 0,
       upgradeOneCost: 25,
       upgradeOneQuantity: 0,
-      upgradeTwoCost: 10,
+      upgradeTwoCost: 100,
       upgradeTwoQuantity: 0,
       upgradeTwoStep: 5,
       upgradeThreeCost: 1000,
