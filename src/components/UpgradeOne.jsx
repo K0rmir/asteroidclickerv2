@@ -9,6 +9,7 @@ export default function UpgradeOne({
   return (
     <div
       id="upgradeSection"
+      title="test"
       className={metalCounter >= upgradeOneCost ? "" : "notAvailable"}
       onClick={() => {
         handleUpgradeOneCost();

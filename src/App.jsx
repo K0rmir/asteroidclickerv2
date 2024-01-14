@@ -3,6 +3,7 @@ import "./index.css";
 import Asteroid from "./components/Asteroid";
 import RareMetalCounter from "./components/RareMetalCounter";
 import UpgradesPanel from "./components/UpgradesPanel";
+import Astronaut from "./components/Astronaut";
 
 export default function App() {
   const [asteroidClick, setAsteroidClick] = useState(1);
@@ -163,6 +164,7 @@ export default function App() {
         handleUpgradeThreeQuantity={handleUpgradeThreeQuantity}
         handleUpgradeThreeMultiplier={handleUpgradeThreeMultiplier}
       />
+      <Astronaut></Astronaut>
     </>
   );
 }

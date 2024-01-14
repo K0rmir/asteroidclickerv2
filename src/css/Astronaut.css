@@ -1,0 +1,9 @@
+#astronaut {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    bottom: -170px;
+    left: 65%;
+    display: none;
+
+}
