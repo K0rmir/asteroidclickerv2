@@ -18,6 +18,8 @@ export default function App() {
   const [upgradeThreeQuantity, setUpgradeThreeQuantity] = useState(0);
   const [isMultiplierActive, setIsMultiplierActive] = useState(false);
   const [preMultiplierValue, setPreMultiplierValue] = useState(asteroidClick);
+  const [isAstronautActive, setIsAstronautActive] = useState(false);
+  const [isAstronautClicked, setIsAstronautClicked] = useState(false);
 
   // Functions for overall, global Metal Count & Metals Per Second (MPS) //
   function handleAsteroidClick() {
@@ -84,19 +86,16 @@ export default function App() {
   // Upgrade Three functionality to apply temporary click multiplier  //
   let timeoutId;
   let newValue;
-  console.log(isMultiplierActive);
   const handleUpgradeThreeMultiplier = () => {
-    console.log("5 Seconds Start");
-    console.log(isMultiplierActive);
     setPreMultiplierValue(asteroidClick);
     setIsMultiplierActive(true);
+    setIsAstronautActive(false);
     handleTempMultiplier();
 
     clearTimeout(timeoutId);
 
     timeoutId = setTimeout(() => {
       setIsMultiplierActive(false);
-      console.log("5 Seconds End");
       setAsteroidClick(asteroidClick);
     }, 5000);
   };
@@ -104,10 +103,8 @@ export default function App() {
   const handleTempMultiplier = () => {
     newValue = isMultiplierActive ? preMultiplierValue * 2 : asteroidClick;
     setAsteroidClick(newValue);
-    console.log(newValue);
   };
 
-  console.log(asteroidClick);
   // -------------------------------------------------------------------- //
   // Local Storage //
 
@@ -121,17 +118,10 @@ export default function App() {
     localStorage.setItem("upgradeTwoQuantity", upgradeTwoQuantity);
     localStorage.setItem("upgradeThreeCost", upgradeThreeCost);
     localStorage.setItem("upgradeThreeQuantity", upgradeThreeQuantity);
-  }, [
-    asteroidClick,
-    metalsPerSecond,
-    metalCounter,
-    upgradeOneCost,
-    upgradeOneQuantity,
-    upgradeTwoCost,
-    upgradeTwoQuantity,
-    upgradeThreeCost,
-    upgradeThreeQuantity,
-  ]);
+    if (metalCounter % 50 === 0 && metalCounter !== 0) {
+      setIsAstronautActive(true);
+    }
+  }, [metalCounter]);
 
   return (
     <>
@@ -164,7 +154,13 @@ export default function App() {
         handleUpgradeThreeQuantity={handleUpgradeThreeQuantity}
         handleUpgradeThreeMultiplier={handleUpgradeThreeMultiplier}
       />
-      <Astronaut></Astronaut>
+      <Astronaut
+        metalCounter={metalCounter}
+        setMetalCounter={setMetalCounter}
+        isAstronautActive={isAstronautActive}
+        isAstronautClicked={isAstronautClicked}
+        setIsAstronautClicked={setIsAstronautClicked}
+      />
     </>
   );
 }

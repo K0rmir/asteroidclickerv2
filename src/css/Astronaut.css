@@ -2,8 +2,38 @@
     width: 200px;
     height: 200px;
     position: absolute;
-    bottom: -170px;
+    bottom: 0px;
     left: 65%;
-    display: none;
-
+    opacity: 0;
 }
+
+@keyframes astronautGlide {
+    0% {
+      transform: translateY(0);
+      opacity: 5%;
+    }
+    8% {
+        opacity: 40%;
+    }
+    16% {
+        opacity: 75%;
+    }
+    25% {
+      opacity: 100%;
+    }
+
+    100% {
+      height: 0px;
+      width: 0px;
+      transform: translateY(-100vh); 
+    }
+  }
+
+
+ 
+
+
+
+  .astronautMove {
+    animation: astronautGlide 9s ease-in-out;
+  }
