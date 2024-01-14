@@ -6,16 +6,49 @@ import UpgradesPanel from "./components/UpgradesPanel";
 import Astronaut from "./components/Astronaut";
 
 export default function App() {
-  const [asteroidClick, setAsteroidClick] = useState(1);
-  const [metalCounter, setMetalCounter] = useState(0);
-  const [metalsPerSecond, setMetalsPerSecond] = useState(0);
-  const [upgradeOneCost, setUpgradeOneCost] = useState(25);
-  const [upgradeOneQuantity, setUpgradeOneQuantity] = useState(0);
-  const [upgradeTwoCost, setUpgradeTwoCost] = useState(10);
-  const [upgradeTwoQuantity, setUpgradeTwoQuantity] = useState(0);
-  const [upgradeTwoStep, setUpgradeTwoStep] = useState(5);
-  const [upgradeThreeCost, setUpgradeThreeCost] = useState(10);
-  const [upgradeThreeQuantity, setUpgradeThreeQuantity] = useState(0);
+  // localStorage.clear();
+  let savedValues = JSON.parse(localStorage.getItem("storageObj"));
+  if (savedValues === null) {
+    savedValues = {
+      asteroidClick: 1,
+      metalCounter: 0,
+      metalsPerSecond: 0,
+      upgradeOneCost: 25,
+      upgradeOneQuantity: 0,
+      upgradeTwoCost: 10,
+      upgradeTwoQuantity: 0,
+      upgradeTwoStep: 5,
+      upgradeThreeCost: 1000,
+      upgradeThreeQuantity: 0,
+    };
+  }
+
+  const [asteroidClick, setAsteroidClick] = useState(savedValues.asteroidClick);
+  const [metalCounter, setMetalCounter] = useState(savedValues.metalCounter);
+  const [metalsPerSecond, setMetalsPerSecond] = useState(
+    savedValues.metalsPerSecond
+  );
+  const [upgradeOneCost, setUpgradeOneCost] = useState(
+    savedValues.upgradeOneCost
+  );
+  const [upgradeOneQuantity, setUpgradeOneQuantity] = useState(
+    savedValues.upgradeOneQuantity
+  );
+  const [upgradeTwoCost, setUpgradeTwoCost] = useState(
+    savedValues.upgradeTwoCost
+  );
+  const [upgradeTwoQuantity, setUpgradeTwoQuantity] = useState(
+    savedValues.upgradeTwoQuantity
+  );
+  const [upgradeTwoStep, setUpgradeTwoStep] = useState(
+    savedValues.upgradeTwoStep
+  );
+  const [upgradeThreeCost, setUpgradeThreeCost] = useState(
+    savedValues.upgradeThreeCost
+  );
+  const [upgradeThreeQuantity, setUpgradeThreeQuantity] = useState(
+    savedValues.upgradeThreeQuantity
+  );
   const [isMultiplierActive, setIsMultiplierActive] = useState(false);
   const [preMultiplierValue, setPreMultiplierValue] = useState(asteroidClick);
   const [isAstronautActive, setIsAstronautActive] = useState(false);
@@ -90,6 +123,7 @@ export default function App() {
     setPreMultiplierValue(asteroidClick);
     setIsMultiplierActive(true);
     setIsAstronautActive(false);
+    setIsAstronautClicked(false);
     handleTempMultiplier();
 
     clearTimeout(timeoutId);
@@ -109,15 +143,29 @@ export default function App() {
   // Local Storage //
 
   useEffect(() => {
-    localStorage.setItem("asteroidClick", asteroidClick);
-    localStorage.setItem("metalsPerSecond", metalsPerSecond);
-    localStorage.setItem("metalCounter", metalCounter);
-    localStorage.setItem("upgradeOneCost", upgradeOneCost);
-    localStorage.setItem("upgradeOneQuantity", upgradeOneQuantity);
-    localStorage.setItem("upgradeTwoCost", upgradeTwoCost);
-    localStorage.setItem("upgradeTwoQuantity", upgradeTwoQuantity);
-    localStorage.setItem("upgradeThreeCost", upgradeThreeCost);
-    localStorage.setItem("upgradeThreeQuantity", upgradeThreeQuantity);
+    const storageObj = {
+      asteroidClick: asteroidClick,
+      metalsPerSecond: metalsPerSecond,
+      metalCounter: metalCounter,
+      upgradeOneCost: upgradeOneCost,
+      upgradeOneQuantity: upgradeOneQuantity,
+      upgradeTwoCost: upgradeTwoCost,
+      upgradeTwoQuantity: upgradeTwoQuantity,
+      upgradeTwoStep: upgradeTwoStep,
+      upgradeThreeCost: upgradeThreeCost,
+      upgradeThreeQuantity: upgradeThreeQuantity,
+    };
+    localStorage.setItem("storageObj", JSON.stringify(storageObj));
+
+    // localStorage.setItem("asteroidClick", asteroidClick);
+    // localStorage.setItem("metalsPerSecond", metalsPerSecond);
+    // localStorage.setItem("metalCounter", metalCounter);
+    // localStorage.setItem("upgradeOneCost", upgradeOneCost);
+    // localStorage.setItem("upgradeOneQuantity", upgradeOneQuantity);
+    // localStorage.setItem("upgradeTwoCost", upgradeTwoCost);
+    // localStorage.setItem("upgradeTwoQuantity", upgradeTwoQuantity);
+    // localStorage.setItem("upgradeThreeCost", upgradeThreeCost);
+    // localStorage.setItem("upgradeThreeQuantity", upgradeThreeQuantity);
     if (metalCounter % 50 === 0 && metalCounter !== 0) {
       setIsAstronautActive(true);
     }

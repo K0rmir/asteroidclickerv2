@@ -16,7 +16,7 @@ export default function Astronaut({
         alt="A cartoon image of a spaceman"
         onClick={() => {
           if (isAstronautClicked === false) {
-            setMetalCounter(metalCounter + 1000);
+            setMetalCounter(metalCounter + 201);
             setIsAstronautClicked((isAstronautClicked = true));
             console.log(isAstronautClicked);
           }
