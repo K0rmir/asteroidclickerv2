@@ -21,7 +21,7 @@ export default function UpgradesPanel({
   upgradeThreeQuantity,
   handleUpgradeThreeQuantity,
   handleUpgradeThreeMultiplier,
-  handleTempMultiplier,
+  // handleTempMultiplier,
   handleAsteroidClick,
 }) {
   return (
@@ -36,6 +36,9 @@ export default function UpgradesPanel({
         metalsPerSecond={metalsPerSecond}
         handleMetalsPerSecond={handleMetalsPerSecond}
       />
+      <div className="upgradesKey">
+        <p>Gain +1 Metals per Second (MpS) per upgrade level.</p>
+      </div>
       <UpgradeTwo
         metalCounter={metalCounter}
         upgradeTwoCost={upgradeTwoCost}
@@ -44,6 +47,9 @@ export default function UpgradesPanel({
         handleUpgradeTwoQuantity={handleUpgradeTwoQuantity}
         handleUpgradeTwoClick={handleUpgradeTwoClick}
       />
+      <div className="upgradesKey">
+        <p>Gain +5 Metals per Click (MpC) per upgrade level.</p>
+      </div>
       <UpgradeThree
         metalCounter={metalCounter}
         upgradeThreeCost={upgradeThreeCost}
@@ -53,6 +59,9 @@ export default function UpgradesPanel({
         handleUpgradeThreeMultiplier={handleUpgradeThreeMultiplier}
         handleAsteroidClick={handleAsteroidClick}
       />
+      <div className="upgradesKey">
+        <p>Gain x2 MpC for 5 Seconds.</p>
+      </div>
     </div>
   );
 }

@@ -9,6 +9,7 @@ export default function UpgradeThree({
   return (
     <div
       id="upgradeSection"
+      title="x2 MPC for 5 Seconds"
       className={metalCounter >= upgradeThreeCost ? "" : "notAvailable"}
       onClick={() => {
         handleUpgradeThreeCost();

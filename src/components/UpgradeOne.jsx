@@ -9,7 +9,7 @@ export default function UpgradeOne({
   return (
     <div
       id="upgradeSection"
-      title="test"
+      title="+1 Metals Per Second (MPS) per upgrade level"
       className={metalCounter >= upgradeOneCost ? "" : "notAvailable"}
       onClick={() => {
         handleUpgradeOneCost();

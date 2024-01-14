@@ -9,6 +9,7 @@ export default function UpgradeTwo({
   return (
     <div
       id="upgradeSection"
+      title="+5 Metals Per Click (MPC) per upgrade level"
       className={metalCounter >= upgradeTwoCost ? "" : "notAvailable"}
       onClick={() => {
         handleUpgradeTwoCost();

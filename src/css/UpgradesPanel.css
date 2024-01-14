@@ -5,7 +5,7 @@
     flex-direction: column;
     align-items: center;
     width: 17%;
-    height: 500px;
+    height: 525px;
     margin-left: 15px;
     background-color: rgb(146, 146, 146);
     font-size: 1.25rem;
@@ -49,4 +49,11 @@
 .notAvailable {
     opacity: 30%;
     pointer-events: none;
+}
+
+.upgradesKey {
+    display: flex;
+    font-size: 0.7rem;
+    
+
 }

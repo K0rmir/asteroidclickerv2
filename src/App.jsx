@@ -86,7 +86,7 @@ export default function App() {
   let newValue;
   console.log(isMultiplierActive);
   const handleUpgradeThreeMultiplier = () => {
-    console.log("3 Seconds Start");
+    console.log("5 Seconds Start");
     console.log(isMultiplierActive);
     setPreMultiplierValue(asteroidClick);
     setIsMultiplierActive(true);
@@ -96,9 +96,9 @@ export default function App() {
 
     timeoutId = setTimeout(() => {
       setIsMultiplierActive(false);
-      console.log("3 Seconds End");
+      console.log("5 Seconds End");
       setAsteroidClick(asteroidClick);
-    }, 3000);
+    }, 5000);
   };
 
   const handleTempMultiplier = () => {
