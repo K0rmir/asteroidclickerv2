@@ -21,6 +21,7 @@
         height: 100px;
         border-radius: 10px;
         cursor: pointer;
+        margin: 5px;
     }
 
 .upgradesPanel img {

@@ -7,20 +7,19 @@ import UpgradesPanel from "./components/UpgradesPanel";
 export default function App() {
   const [metalCounter, setMetalCounter] = useState(0);
   const [asteroidClick, setAsteroidClick] = useState(1);
-  const [upgradeOneCost, setUpgradeOneCost] = useState(10);
+  const [upgradeOneCost, setUpgradeOneCost] = useState(25);
   const [upgradeOneQuantity, setUpgradeOneQuantity] = useState(0);
   const [metalsPerSecond, setMetalsPerSecond] = useState(0);
-  const [upgradeTwoCost, setUpgradeTwoCost] = useState(15);
+  const [upgradeTwoCost, setUpgradeTwoCost] = useState(100);
   const [upgradeTwoQuantity, setUpgradeTwoQuantity] = useState(0);
-  const [upgradeTwoStep, setUpgradeTwoStep] = useState(10);
-  const [upgradeThreeCost, setUpgradeThreeCost] = useState(20);
+  const [upgradeTwoStep, setUpgradeTwoStep] = useState(5);
+  const [upgradeThreeCost, setUpgradeThreeCost] = useState(1000);
   const [upgradeThreeQuantity, setUpgradeThreeQuantity] = useState(0);
   const [isMultiplierActive, setIsMultiplierActive] = useState(false);
   const [preMultiplierValue, setPreMultiplierValue] = useState(asteroidClick);
 
   // Functions for overall, global Metal Count & Metals Per Second (MPS) //
   function handleAsteroidClick() {
-    setPreMultiplierValue(asteroidClick);
     setMetalCounter(metalCounter + asteroidClick);
     if (isMultiplierActive) {
       handleTempMultiplier();
@@ -66,7 +65,7 @@ export default function App() {
   }
   // Upgrade Two functionality to increase asteroid click by 10 //
   function handleUpgradeTwoClick() {
-    setUpgradeTwoStep(upgradeTwoStep + 10);
+    setUpgradeTwoStep(upgradeTwoStep + 5);
     setAsteroidClick(upgradeTwoStep);
   }
   // ------------------------------------------------------------- //
@@ -80,14 +79,13 @@ export default function App() {
   function handleUpgradeThreeQuantity() {
     setUpgradeThreeQuantity(upgradeThreeQuantity + 1);
   }
-  // Upgrade Three functionality to apply temporary click modifier  //
-
+  // Upgrade Three functionality to apply temporary click multiplier  //
   let timeoutId;
   console.log(isMultiplierActive);
   const handleUpgradeThreeMultiplier = () => {
-    console.log("5 Seconds Start");
+    console.log("3 Seconds Start");
     console.log(isMultiplierActive);
-    // setPreMultiplierValue(asteroidClick);
+    setPreMultiplierValue(asteroidClick);
     setIsMultiplierActive(true);
     handleTempMultiplier();
 
@@ -95,9 +93,9 @@ export default function App() {
 
     timeoutId = setTimeout(() => {
       setIsMultiplierActive(false);
-      console.log("5 Seconds End");
-      setAsteroidClick(preMultiplierValue);
-    }, 5000);
+      console.log("3 Seconds End");
+      setAsteroidClick(asteroidClick);
+    }, 3000);
   };
 
   const handleTempMultiplier = () => {
