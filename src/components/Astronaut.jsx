@@ -18,7 +18,6 @@ export default function Astronaut({
           if (isAstronautClicked === false) {
             setMetalCounter(metalCounter + 201);
             setIsAstronautClicked((isAstronautClicked = true));
-            console.log(isAstronautClicked);
           }
         }}
       />

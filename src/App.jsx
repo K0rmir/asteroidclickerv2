@@ -157,26 +157,19 @@ export default function App() {
     };
     localStorage.setItem("storageObj", JSON.stringify(storageObj));
 
-    // localStorage.setItem("asteroidClick", asteroidClick);
-    // localStorage.setItem("metalsPerSecond", metalsPerSecond);
-    // localStorage.setItem("metalCounter", metalCounter);
-    // localStorage.setItem("upgradeOneCost", upgradeOneCost);
-    // localStorage.setItem("upgradeOneQuantity", upgradeOneQuantity);
-    // localStorage.setItem("upgradeTwoCost", upgradeTwoCost);
-    // localStorage.setItem("upgradeTwoQuantity", upgradeTwoQuantity);
-    // localStorage.setItem("upgradeThreeCost", upgradeThreeCost);
-    // localStorage.setItem("upgradeThreeQuantity", upgradeThreeQuantity);
     if (metalCounter % 50 === 0 && metalCounter !== 0) {
       setIsAstronautActive(true);
     }
   }, [metalCounter]);
-
+  // -------------------------------------------------------------------------- //
   return (
     <>
       <Asteroid
         asteroidClick={asteroidClick}
         handleAsteroidClick={handleAsteroidClick}
         isMultiplierActive={isMultiplierActive}
+        isAstronautClicked={isAstronautClicked}
+        isAstronautActive={isAstronautActive}
       />
       <RareMetalCounter
         metalCounter={metalCounter}
