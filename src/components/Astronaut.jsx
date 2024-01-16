@@ -12,7 +12,7 @@ export default function Astronaut({
       <img
         id="astronaut"
         className={isAstronautActive ? "astronautMove" : ""}
-        src="./src/assets/astronaut.png"
+        src="./dist/assets/astronaut.png"
         alt="A cartoon image of a spaceman"
         onClick={() => {
           if (isAstronautClicked === false) {

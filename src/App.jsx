@@ -6,7 +6,7 @@ import UpgradesPanel from "./components/UpgradesPanel";
 import Astronaut from "./components/Astronaut";
 
 export default function App() {
-  localStorage.clear();
+  // localStorage.clear();
   let savedValues = JSON.parse(localStorage.getItem("storageObj"));
   if (savedValues === null) {
     savedValues = {

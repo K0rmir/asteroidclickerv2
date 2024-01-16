@@ -3,7 +3,7 @@ body {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  background-image: url(./src/assets/spacebackground.jpeg);
+  background-image: url(./dist/assets/spacebackground.jpeg);
   background-size: cover;
   background-repeat: no-repeat;
   font-family: monospace;
