@@ -1,6 +1,9 @@
 # Asteroid Miner
 ## An in-browser clicker game
 
+[Play the current live version here!](https://asteroidminer.kormir.dev/)
+
+
 Inspired by Cookie Clicker and created as my week 6 project on the Tech Educators Full Stack Software Development bootcamp, Asteroid Miner is an in-browser clicker style game, best enjoyed on a desktop computer. The objective of the game is to mine as many Rare Metals from the asteroid as possible. By clicking on the asteroid in the centre of the screen you will gain Rare Metals. Use these Rare Metals to purchase upgrades from the upgrades panel on the left of the screen to gain *even more* Rare Metals! 
 
 ## Upgrades
