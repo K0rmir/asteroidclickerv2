@@ -15,7 +15,7 @@ export default function Asteroid({
           onClick={() => {
             handleAsteroidClick();
           }}
-          src="./public/assets/asteroid.png"
+          src="./assets/asteroid.png"
           alt="An image of a cartoon asteroid"
         />
       </div>

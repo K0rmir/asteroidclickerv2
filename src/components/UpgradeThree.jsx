@@ -17,10 +17,7 @@ export default function UpgradeThree({
         handleUpgradeThreeMultiplier();
       }}>
       <div className="upgradeImgTitle">
-        <img
-          src="./public/assets/refinery.png"
-          alt="A cartoon image of a spaceship"
-        />
+        <img src="./assets/refinery.png" alt="A cartoon image of a spaceship" />
         <p>Metal Refinery</p>
       </div>
 
