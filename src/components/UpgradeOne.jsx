@@ -18,7 +18,7 @@ export default function UpgradeOne({
       }}>
       <div className="upgradeImgTitle">
         <img
-          src="./dist/assets/spaceship.png"
+          src="./public/assets/spaceship.png"
           alt="A cartoon image of a spaceship"
         />
         <p>Ship Miner</p>

@@ -18,7 +18,7 @@ export default function UpgradeTwo({
       }}>
       <div className="upgradeImgTitle">
         <img
-          src="./dist/assets/miningblastertran.png"
+          src="./public/assets/miningblastertran.png"
           alt="A cartoon image of a laser gun"
         />
         <p>Mining Blaster</p>

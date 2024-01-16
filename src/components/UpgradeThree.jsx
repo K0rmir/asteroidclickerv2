@@ -18,7 +18,7 @@ export default function UpgradeThree({
       }}>
       <div className="upgradeImgTitle">
         <img
-          src="./dist/assets/refinery.png"
+          src="./public/assets/refinery.png"
           alt="A cartoon image of a spaceship"
         />
         <p>Metal Refinery</p>
