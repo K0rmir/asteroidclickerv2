@@ -23,6 +23,6 @@ Purchasing the Metal Refinery will apply a x2 Click Modifier to your MpC for 5 s
 - HTML5 & CSS
 - React.js
 
-Asteroid Miner is my first project built in React and I'm looking forward to refactoring & adding to this projects in the future. 
+Asteroid Miner is my first project built in React and I'm looking forward to refactoring & adding to this project in the future. 
 
 
